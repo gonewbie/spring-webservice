@@ -16,11 +16,10 @@ cache:
 
 script: "./gradlew clean build"
 
-# CI 실행 완료시 메일로 알람
-notifications:
-  email:
-    recipients:
-      - gounewbie@gmail.com
+before_deploy:
+  - zip -r spring-webservice *
+  - mkdir -p deploy
+  - mv spring-webservice.zip deploy/spring-webservice.zip
       
 deploy:
   - provider: s3
@@ -34,3 +33,9 @@ deploy:
     on:
       repo: gonewbie/spring-webservice #Github 주소
       branch: master
+      
+# CI 실행 완료시 메일로 알람
+notifications:
+  email:
+    recipients:
+      - gounewbie@gmail.com
