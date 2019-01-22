@@ -21,48 +21,47 @@ import com.cloud.webservice.domain.posts.PostsRepository;
 @SpringBootTest
 public class PostsRepositoryTest {
 
-	@Autowired
-	PostsRepository postsRepository;
-	
-	@After
-	public void cleanup() {
-		postsRepository.deleteAll();
-	}
-	
-	@Test
-	public void save_load() {
-		//given
-		postsRepository.save(Posts.builder()
-				.title("테스트 게시글")
-				.content("테스트 본문")
-				.author("gounewbie@gmail.com")
-				.build());
-		
-		//when
-		List<Posts> postsList = postsRepository.findAll();
-		
-		//then
-		Posts posts = postsList.get(2);
-		assertThat(posts.getTitle(), is("테스트 게시글"));
-		assertThat(posts.getContent(), is("테스트 본문"));
-	}
-	
-	@Test
-	public void BaseTimeEntity_set() {
-		//given
-		LocalDateTime now = LocalDateTime.now();
-		postsRepository.save(Posts.builder()
-				.title("테스트 게시글")
-				.content("테스트 본문")
-				.author("gounewbie@gmail.com")
-				.build());
-		//when
-		List<Posts> postsList = postsRepository.findAll();
-		
-		//then
-		Posts posts = postsList.get(0);
-		assertTrue(posts.getCreatedDate().isAfter(now));
-		assertTrue(posts.getModifiedDate().isAfter(now));
-	}
-	
+    @Autowired
+    PostsRepository postsRepository;
+
+    @After
+    public void cleanup() {
+        postsRepository.deleteAll();
+    }
+
+    @Test
+    public void 게시글저장_불러오기() {
+        //given
+        postsRepository.save(Posts.builder()
+                .title("테스트 게시글")
+                .content("테스트 본문")
+                .author("gounewbie@gmail.com")
+                .build());
+
+        //when
+        List<Posts> postsList = postsRepository.findAll();
+
+        //then
+        Posts posts = postsList.get(0);
+        assertThat(posts.getTitle(), is("테스트 게시글"));
+        assertThat(posts.getContent(), is("테스트 본문"));
+    }
+
+    @Test
+    public void BaseTimeEntity_등록 () {
+        //given
+        LocalDateTime now = LocalDateTime.now();
+        postsRepository.save(Posts.builder()
+                .title("테스트 게시글")
+                .content("테스트 본문")
+                .author("gounewbie@gmail.com")
+                .build());
+        //when
+        List<Posts> postsList = postsRepository.findAll();
+
+        //then
+        Posts posts = postsList.get(0);
+        assertTrue(posts.getCreatedDate().isAfter(now));
+        assertTrue(posts.getModifiedDate().isAfter(now));
+    }
 }
