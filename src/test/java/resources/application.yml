@@ -1,0 +1,11 @@
+# Test
+spring:
+  profiles:
+    active: local # select default environment
+
+# local environment
+---
+spring:
+  profiles: local
+  jpa:
+    show-sql: true
