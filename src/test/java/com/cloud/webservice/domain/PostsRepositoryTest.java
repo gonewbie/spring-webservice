@@ -42,7 +42,7 @@ public class PostsRepositoryTest {
 		List<Posts> postsList = postsRepository.findAll();
 		
 		//then
-		Posts posts = postsList.get(0);
+		Posts posts = postsList.get(2);
 		assertThat(posts.getTitle(), is("테스트 게시글"));
 		assertThat(posts.getContent(), is("테스트 본문"));
 	}
