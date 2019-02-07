@@ -2,6 +2,11 @@ spring:
   profiles:
     active: local # select default environment
     
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    
 # local environment
 ---
 spring:
@@ -15,3 +20,18 @@ spring:
   h2:
     console:
       enabled: true
+      
+# production environment
+---
+spring.profiles: set1
+spring.profiles.include: real_db
+
+server:
+  port: 8081
+
+---
+spring.profiles: set2
+spring.profiles.include: real_db
+
+server:
+  port: 8082

@@ -10,7 +10,7 @@ public class Application {
 	
 	public static final String APPLICATION_LOCATIONS = "spring.config.location="
 			+ "classpath:application.yml,"
-			// for local env + "E:\\real-application.yml"
+			// + "E:\\real-application.yml"; //for local env
 			+ "/app/config/spring-webservice/real-application.yml";
 
 	public static void main(String[] args) {
