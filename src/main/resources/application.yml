@@ -1,7 +1,6 @@
 spring:
   profiles:
-    active: local # select default environment
-    
+    active: local # select default environment  
   jpa:
     properties:
       hibernate:
@@ -24,14 +23,14 @@ spring:
 # production environment
 ---
 spring.profiles: set1
-spring.profiles.include: real_db
+spring.profiles.include: real-db
 
 server:
   port: 8081
 
 ---
 spring.profiles: set2
-spring.profiles.include: real_db
+spring.profiles.include: real-db
 
 server:
   port: 8082
